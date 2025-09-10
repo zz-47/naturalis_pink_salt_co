@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Cart - Naturalis Pink Salt Co.</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Raleway&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header class="luxury-header">
+    <div class="logo">
+      <h1>Naturalis <span>Pink Salt Co.</span></h1>
+    </div>
+    <a href="{{ url_for('index') }}" class="cart-btn">Continue Shopping</a>
+  </header>
+
+  <main class="cart-container">
+    <h2>Your Cart</h2>
+    {% if cart %}
+    <table class="cart-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Total</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in cart %}
+        <tr>
+          <td class="product-info">
+            <img src="{{ url_for('static', filename='images/' + item.image) }}" alt="{{ item.name }}" />
+            <span>{{ item.name }}</span>
+          </td>
+          <td>${{ '%.2f'|format(item.price) }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>${{ '%.2f'|format(item.total) }}</td>
+          <td><a href="{{ url_for('remove_from_cart', product_id=item.id) }}" class="remove-btn">Remove</a></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+
+    <div class="cart-summary">
+      <p><strong>Total: </strong> ${{ '%.2f'|format(total) }}</p>
+      <button class="btn proceed-btn" onclick="alert('Checkout feature coming soon!')">Proceed to Checkout</button>
+      <a href="{{ url_for('clear_cart') }}" class="btn clear-btn">Clear Cart</a>
+    </div>
+    {% else %}
+      <p class="empty-cart-msg">Your cart is empty.</p>
+    {% endif %}
+  </main>
+</body>
+</html>
