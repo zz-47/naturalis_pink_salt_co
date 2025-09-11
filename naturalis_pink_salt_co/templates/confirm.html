@@ -1,0 +1,20 @@
+<!-- templates/confirm.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Confirmed - Naturalis Pink Salt Co.</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <div class="container confirm-container">
+    <h2>Thank You!</h2>
+    <p>Your order has been received, {{ name }}.</p>
+    <p>We’ll deliver your order to:</p>
+    <p><strong>{{ address }}</strong></p>
+    <p>A confirmation has been sent to: <strong>{{ email }}</strong></p>
+
+    <a href="{{ url_for('index') }}" class="btn">Back to Shop</a>
+  </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thank You</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+  <header class="luxury-header">
+    <div class="logo">
+      <h1>Thank You <span>{{ name }}</span>!</h1>
+    </div>
+  </header>
+
+  <main style="text-align: center; padding: 60px;">
+    <h2>Your order has been placed successfully.</h2>
+    <p>We will contact you soon with more details.</p>
+    <a href="{{ url_for('index') }}" class="btn proceed-btn">Back to Shop</a>
+  </main>
+</body>
+</html>

@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Dashboard - Naturalis Pink Salt Co.</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <style>
+        body {
+            background-color: #fff8f0;
+            color: #4a4a4a;
+        }
+        header {
+            background-color: #e27d60;
+            padding: 1rem;
+            color: white;
+            margin-bottom: 2rem;
+        }
+        .order-list {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .order-header {
+            background-color: #85dcb0;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            color: #2f5233;
+        }
+        .order-items {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .order-items li {
+            border-bottom: 1px solid #ddd;
+            padding: 0.5rem 0;
+        }
+        .empty-msg {
+            text-align: center;
+            font-style: italic;
+            color: #a0a0a0;
+            margin-top: 3rem;
+        }
+        .logout-btn {
+            float: right;
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+            border: 1px solid white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+        }
+        .logout-btn:hover {
+            background-color: white;
+            color: #e27d60;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container d-flex justify-content-between align-items-center">
+        <h1>Dashboard</h1>
+        <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
+    </div>
+</header>
+
+<div class="container order-list">
+
+    <h2>Orders Overview</h2>
+
+    {% if orders %}
+        {% for order in orders %}
+            <div class="order-header shadow-sm">
+                <strong>Customer:</strong> {{ order.name }} <br />
+                <strong>Email:</strong> {{ order.email }} <br />
+                <strong>Address:</strong> {{ order.address }} <br />
+                <strong>Payment Method:</strong> {{ order.payment_method }} <br />
+                <strong>Total:</strong> ${{ "%.2f"|format(order.total) }}
+            </div>
+            <ul class="order-items">
+                {% for item in order['items'] %}
+                    <li>
+                        {{ item.name }} x {{ item.quantity }} &mdash; ${{ "%.2f"|format(item.get('subtotal', 0.0)) }}
+                    </li>
+                {% endfor %}
+            </ul>
+            <hr />
+        {% endfor %}
+    {% else %}
+        <p class="empty-msg">No orders yet.</p>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

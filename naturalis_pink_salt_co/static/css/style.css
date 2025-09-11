@@ -347,4 +347,303 @@ body {
   background: linear-gradient(45deg, #9c4737, #b85c4a);
 }
 
+.checkout-container, .confirm-container {
+  max-width: 600px;
+  margin: 40px auto;
+  background: #fff5f8;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group input, .form-group textarea {
+  width: 100%;
+  padding: 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+.order-summary {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.order-summary li {
+  margin-bottom: 8px;
+}
+
+.btn {
+  background-color: #dd7c9d;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+.cart-summary {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.cart-summary p.total-price {
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+}
+
+.cart-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.proceed-btn, .clear-btn {
+  background-color: #dd7c9d;
+  color: white;
+  padding: 10px 24px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 0.3s;
+}
+
+.proceed-btn:hover {
+  background-color: #c96a8a;
+}
+
+.clear-btn {
+  background-color: #888;
+}
+
+.clear-btn:hover {
+  background-color: #666;
+}
+
+.checkout-wrapper {
+  max-width: 750px;
+  margin: 60px auto;
+  padding: 40px 30px;
+  background-color: #fff0f5;
+  border-radius: 14px;
+  box-shadow: 0 4px 30px rgba(180, 129, 155, 0.3);
+  font-family: 'Raleway', sans-serif;
+}
+
+.checkout-box h2.checkout-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.2rem;
+  text-align: center;
+  margin-bottom: 10px;
+  color: #c46c8a;
+}
+
+.checkout-subtitle {
+  text-align: center;
+  color: #888;
+  margin-bottom: 30px;
+}
+
+.checkout-form .form-group {
+  margin-bottom: 22px;
+}
+
+.checkout-form label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 8px;
+  color: #5a5a5a;
+}
+
+.checkout-form input,
+.checkout-form textarea,
+.checkout-form select {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  background-color: #fff;
+}
+
+.checkout-form textarea {
+  resize: vertical;
+}
+
+.checkout-form .btn.proceed-btn {
+  width: 100%;
+  background: linear-gradient(to right, #d88aa6, #f0b6c1);
+  color: white;
+  padding: 14px;
+  font-size: 1.1rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.checkout-form .btn.proceed-btn:hover {
+  background: linear-gradient(to right, #c36e8b, #e9a8ba);
+}
+/* === Dashboard Styling === */
+.dashboard-main {
+  max-width: 900px;
+  margin: 60px auto;
+  padding: 20px;
+  font-family: 'Raleway', sans-serif;
+  color: #333;
+}
+
+.dashboard-main h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2.5rem;
+  text-align: center;
+  color: #b94e48; /* pinkish-gold */
+  margin-bottom: 40px;
+}
+
+.orders-list {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.order-card {
+  background-color: #fff;
+  border-radius: 12px;
+  padding: 25px;
+  box-shadow: 0 4px 20px rgba(185, 78, 72, 0.15);
+  border: 1px solid #f0dede;
+  transition: all 0.3s ease;
+}
+
+.order-card:hover {
+  box-shadow: 0 6px 25px rgba(185, 78, 72, 0.25);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px solid #f4e4e4;
+  padding-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+.order-header h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.8rem;
+  color: #7a2e2a;
+  margin: 0;
+}
+
+.order-header .order-date {
+  font-size: 0.9rem;
+  color: #999;
+}
+
+.order-details p {
+  margin: 6px 0;
+  font-size: 1rem;
+}
+
+.order-items h4 {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #b94e48;
+}
+
+.order-items ul {
+  list-style: none;
+  padding-left: 0;
+  margin-top: 10px;
+}
+
+.order-items li {
+  margin-bottom: 6px;
+  font-size: 1rem;
+}
+
+.order-items .qty {
+  color: #555;
+  margin-left: 5px;
+}
+
+.order-items .price {
+  color: #7a2e2a;
+  margin-left: 10px;
+}
+
+.order-total {
+  text-align: right;
+  margin-top: 20px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #5f2a2a;
+}
+
+.no-orders {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #777;
+  margin-top: 100px;
+}
+
+/* === Header/Footer from theme === */
+.luxury-header {
+  background-color: #fff;
+  padding: 20px 40px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.luxury-header .logo h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 2rem;
+  color: #7a2e2a;
+}
+
+.luxury-header .logo h1 span {
+  font-weight: normal;
+  color: #b94e48;
+}
+
+.cart-btn {
+  background-color: #b94e48;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-family: 'Raleway', sans-serif;
+  font-size: 1rem;
+  transition: background 0.3s;
+}
+
+.cart-btn:hover {
+  background-color: #7a2e2a;
+}
+
+.footer {
+  background-color: #fbeaea;
+  text-align: center;
+  padding: 30px;
+  margin-top: 60px;
+  font-family: 'Raleway', sans-serif;
+}
+
+.footer a {
+  color: #b94e48;
+  text-decoration: none;
+}
+
 }

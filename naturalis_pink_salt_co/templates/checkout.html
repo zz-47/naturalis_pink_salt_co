@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout - Naturalis Pink Salt Co.</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Raleway&display=swap" rel="stylesheet" />
+  <style>
+    /* Inline styles to ensure checkout form fits the theme */
+    main.checkout-container {
+      max-width: 600px;
+      margin: 60px auto 100px;
+      background: rgba(255, 255, 255, 0.85);
+      padding: 40px 50px;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      font-family: 'Raleway', sans-serif;
+      color: #333;
+    }
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.4rem;
+      margin-bottom: 30px;
+      text-align: center;
+      color: #b94e48; /* pink salt inspired */
+    }
+    form.checkout-form label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      margin-top: 18px;
+      color: #6a4c4a;
+    }
+    form.checkout-form input[type="text"],
+    form.checkout-form input[type="email"],
+    form.checkout-form textarea,
+    form.checkout-form select {
+      width: 100%;
+      padding: 12px 15px;
+      font-size: 1rem;
+      border: 2px solid #b94e48;
+      border-radius: 8px;
+      transition: border-color 0.3s ease;
+      font-family: 'Raleway', sans-serif;
+    }
+    form.checkout-form input[type="text"]:focus,
+    form.checkout-form input[type="email"]:focus,
+    form.checkout-form textarea:focus,
+    form.checkout-form select:focus {
+      border-color: #7a2e2a;
+      outline: none;
+    }
+    form.checkout-form textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+    .btn.proceed-btn {
+      background-color: #b94e48;
+      color: #fff;
+      font-weight: 700;
+      font-size: 1.2rem;
+      padding: 15px 0;
+      width: 100%;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      margin-top: 35px;
+      box-shadow: 0 5px 15px rgba(185, 78, 72, 0.6);
+      transition: background-color 0.3s ease;
+      font-family: 'Raleway', sans-serif;
+    }
+    .btn.proceed-btn:hover {
+      background-color: #7a2e2a;
+      box-shadow: 0 6px 18px rgba(122, 46, 42, 0.75);
+    }
+  </style>
+</head>
+<body>
+  <header class="luxury-header">
+    <div class="logo">
+      <h1>Naturalis <span>Pink Salt Co.</span></h1>
+    </div>
+    <a href="{{ url_for('view_cart') }}" class="cart-btn">Back to Cart</a>
+  </header>
+
+  <main class="checkout-container">
+    <h2>Checkout</h2>
+    <form class="checkout-form" method="POST" action="{{ url_for('checkout') }}">
+      <label for="full-name">Full Name</label>
+      <input type="text" id="full-name" name="full-name" placeholder="Your full name" required />
+
+      <label for="email">Email Address</label>
+      <input type="email" id="email" name="email" placeholder="you@example.com" required />
+
+      <label for="address">Shipping Address</label>
+      <textarea id="address" name="address" placeholder="Your complete shipping address" required></textarea>
+
+      <label for="payment-method">Payment Method</label>
+      <select id="payment-method" name="payment-method" required>
+        <option value="" disabled selected>Select a payment method</option>
+        <option value="cod">Cash on Delivery</option>
+        <option value="credit_card">Credit Card</option>
+        <option value="paypal">PayPal</option>
+      </select>
+
+      <button type="submit" class="btn proceed-btn">Place Order</button>
+    </form>
+  </main>
+</body>
+</html>

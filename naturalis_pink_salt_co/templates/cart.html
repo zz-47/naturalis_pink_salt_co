@@ -17,6 +17,7 @@
 
   <main class="cart-container">
     <h2>Your Cart</h2>
+
     {% if cart %}
     <table class="cart-table">
       <thead>
@@ -37,7 +38,7 @@
           </td>
           <td>${{ '%.2f'|format(item.price) }}</td>
           <td>{{ item.quantity }}</td>
-          <td>${{ '%.2f'|format(item.total) }}</td>
+          <td>${{ '%.2f'|format(item.subtotal) }}</td>
           <td><a href="{{ url_for('remove_from_cart', product_id=item.id) }}" class="remove-btn">Remove</a></td>
         </tr>
         {% endfor %}
@@ -45,10 +46,14 @@
     </table>
 
     <div class="cart-summary">
-      <p><strong>Total: </strong> ${{ '%.2f'|format(total) }}</p>
-      <button class="btn proceed-btn" onclick="alert('Checkout feature coming soon!')">Proceed to Checkout</button>
-      <a href="{{ url_for('clear_cart') }}" class="btn clear-btn">Clear Cart</a>
+      <p class="total-price"><strong>Total:</strong> ${{ '%.2f'|format(total) }}</p>
+
+      <div class="cart-buttons">
+        <a href="{{ url_for('checkout') }}" class="btn proceed-btn">Proceed to Checkout</a>
+        <a href="{{ url_for('clear_cart') }}" class="btn clear-btn">Clear Cart</a>
+      </div>
     </div>
+
     {% else %}
       <p class="empty-cart-msg">Your cart is empty.</p>
     {% endif %}
