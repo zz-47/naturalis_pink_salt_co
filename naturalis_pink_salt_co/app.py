@@ -38,7 +38,7 @@ products = [
 
 # Admin credentials (hardcoded for demo, use env vars for production)
 ADMIN_USERNAME = 'admin'
-ADMIN_PASSWORD = 'admin123'
+ADMIN_PASSWORD = 'All@hAll@h786'
 
 def get_product_by_id(product_id):
     for product in products:
