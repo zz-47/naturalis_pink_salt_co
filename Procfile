@@ -1,1 +1,1 @@
-web: gunicorn app:app
+web: python naturalis_pink_salt_co/app.py
