@@ -1,11 +1,13 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from flask_mail import Mail, Message
 from functools import wraps
+from dotenv import load_dotenv
+load_dotenv()
 import json
 import os
 
 app = Flask(__name__)
-app.secret_key = 'supersecretkey'  # Change this to a strong secret key in production
+app.secret_key = os.environ.get('SECRET_KEY', 'dev-secret-key')  # Change this to a strong secret key in production
 
 # === Flask-Mail configuration ===
 app.config.update(
@@ -262,6 +264,5 @@ def logout():
 
 
 if __name__ == "__main__":
-    import os
     port = int(os.environ.get("PORT", 8080))
     app.run(host="0.0.0.0", port=port)
