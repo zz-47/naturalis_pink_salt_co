@@ -260,8 +260,6 @@ def logout():
     flash("You have been logged out.", "info")
     return redirect(url_for('login'))
 
-import os
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8080))  # Default to 8080 if PORT not set
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=8080)
