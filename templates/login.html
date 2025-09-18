@@ -1,85 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login ‒ Naturalis Pink Salt Co.</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Raleway', sans-serif;
-      background-color: #f5f5f8;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-
-    .login-container {
-      background-color: #ffffff;
-      padding: 2rem 3rem;
-      border-radius: 8px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      width: 100%;
-      max-width: 400px;
-    }
-
-    .login-container h2 {
-      margin-bottom: 1.5rem;
-      font-size: 1.8rem;
-      color: #8a2be2;
-      text-align: center;
-    }
-
-    .login-container label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 600;
-    }
-
-    .login-container input[type="text"],
-    .login-container input[type="password"] {
-      width: 100%;
-      padding: 0.75rem;
-      margin-bottom: 1.25rem;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
-    }
-
-    .login-container button {
-      width: 100%;
-      background-color: #8a2be2;
-      color: white;
-      padding: 0.75rem;
-      border: none;
-      border-radius: 4px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-
-    .login-container button:hover {
-      background-color: #7326c7;
-    }
-
-    .flash-message {
-      background-color: #ffe0e0;
-      color: #b30000;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
-      border: 1px solid #ffcccc;
-      border-radius: 4px;
-      text-align: center;
-      font-size: 0.95rem;
-    }
-  </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Admin Login ‒ Naturalis Pink Salt Co.</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Raleway&display=swap" rel="stylesheet" />
 </head>
 <body>
   <div class="login-container">
     <h2>Admin Login</h2>
-
     {% with messages = get_flashed_messages(with_categories=true) %}
       {% if messages %}
         {% for category, message in messages %}
@@ -87,28 +17,13 @@
         {% endfor %}
       {% endif %}
     {% endwith %}
-
-    <form action="{{ url_for('login') }}" method="POST">
+    <form method="POST" action="{{ url_for('login') }}">
       <label for="username">Username</label>
-      <input type="text" id="username" name="username" placeholder="Enter admin username" required />
-
+      <input type="text" id="username" name="username" placeholder="Enter username" required />
       <label for="password">Password</label>
       <input type="password" id="password" name="password" placeholder="Enter password" required />
-
       <button type="submit">Login</button>
     </form>
   </div>
-
-  <script>
-    // Fade out flash messages after 3 seconds
-    setTimeout(() => {
-      const flash = document.querySelector('.flash-message');
-      if (flash) {
-        flash.style.transition = 'opacity 0.5s ease';
-        flash.style.opacity = '0';
-        setTimeout(() => flash.remove(), 500);
-      }
-    }, 3000);
-  </script>
 </body>
 </html>

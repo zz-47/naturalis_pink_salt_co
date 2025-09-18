@@ -1,20 +1,25 @@
-<!-- templates/confirm.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Order Confirmed - Naturalis Pink Salt Co.</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Order Confirmed ‒ Naturalis Pink Salt Co.</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Raleway&display=swap" rel="stylesheet" />
 </head>
 <body>
-  <div class="container confirm-container">
-    <h2>Thank You!</h2>
-    <p>Your order has been received, {{ name }}.</p>
-    <p>We’ll deliver your order to:</p>
+  <header class="luxury-header">
+    <div class="logo">
+      <h1>Thank You <span>{{ name }}</span></h1>
+    </div>
+  </header>
+  <main class="confirm-container">
+    <h2>Order Confirmed</h2>
+    <p>Your order has been received, <strong>{{ name }}</strong>.</p>
+    <p>We will deliver to:</p>
     <p><strong>{{ address }}</strong></p>
-    <p>A confirmation has been sent to: <strong>{{ email }}</strong></p>
-
-    <a href="{{ url_for('index') }}" class="btn">Back to Shop</a>
-  </div>
+    <p>A confirmation email has been sent to: <strong>{{ email }}</strong></p>
+    <a href="{{ url_for('index') }}" class="btn proceed-btn">Back to Shop</a>
+  </main>
 </body>
 </html>

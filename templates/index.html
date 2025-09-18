@@ -1,24 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Naturalis Pink Salt Co.</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Raleway&display=swap" rel="stylesheet" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Naturalis Pink Salt Co.</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Raleway&display=swap" rel="stylesheet" />
 </head>
 <body>
   <header class="luxury-header">
     <div class="logo">
       <h1>Naturalis <span>Pink Salt Co.</span></h1>
     </div>
-    <a href="{{ url_for('view_cart') }}" class="cart-btn">Cart</a>
+    <a href="{{ url_for('view_cart') }}" class="cart-btn">View Cart</a>
   </header>
-
-  <section class="intro">
-    <header> <h3> <b> Welcome to the elegant collection of Naturalis Pink Salt Co.</b> </h3> </header>
-    <p>Experience the purity and elegance of nature’s finest pink salt. Our products bring luxury and wellness to your daily life, with sustainable sourcing and exquisite quality.</p>
-  </section>
 
   <section class="product-grid">
     {% for product in products %}
@@ -35,16 +30,14 @@
     {% endfor %}
   </section>
 
-<footer class="footer">
-  <div class="footer-wrapper">
-    <h2 class="footer-heading">We’d love your feedback</h2>
-    <p class="footer-text">
-      <a href="mailto:feedback@naturalis.com" class="footer-email">feedback@naturalis.com</a>
-    </p>
-    <a href="tel:03455748001" class="call-us-btn">Call us: No. not provided yet</a>
-  </div>
-</footer>
-
-
+  <footer class="footer">
+    <div class="footer-wrapper">
+      <h2 class="footer-heading">We’d love your feedback</h2>
+      <p class="footer-text">
+        <a href="mailto:feedback@naturalis.com" class="footer-email">feedback@naturalis.com</a>
+      </p>
+      <a href="tel:0000000000" class="call-us-btn">Call Us</a>
+    </div>
+  </footer>
 </body>
 </html>
