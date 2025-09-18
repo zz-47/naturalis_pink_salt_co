@@ -176,27 +176,34 @@ def clear_cart():
 @app.route('/checkout', methods=['GET', 'POST'])
 def checkout():
     if request.method == 'POST':
+        # Get and strip form data
         name = request.form.get('full-name', '').strip()
         email = request.form.get('email', '').strip()
         address = request.form.get('address', '').strip()
         payment_method = request.form.get('payment-method', '').strip()
 
+        # Validate form inputs
         if not all([name, email, address, payment_method]):
             flash("Please fill in all required fields.", "error")
             return redirect(url_for('checkout'))
 
+        # Validate cart
         cart = get_cart()
         if not cart:
             flash("Your cart is empty.", "error")
             return redirect(url_for('view_cart'))
 
+        # Prepare order items and total
         items = []
         total = 0.0
         for product_id, item in cart.items():
             product = get_product_by_id(product_id)
             if not product:
+                # Skip invalid products (optional: log this)
                 continue
-            quantity = item['quantity']
+            quantity = item.get('quantity', 0)
+            if quantity <= 0:
+                continue
             subtotal = product['price'] * quantity
             items.append({
                 'name': product['name'],
@@ -204,6 +211,10 @@ def checkout():
                 'subtotal': subtotal
             })
             total += subtotal
+
+        if not items:
+            flash("Your cart contains invalid items.", "error")
+            return redirect(url_for('view_cart'))
 
         order = {
             'name': name,
@@ -214,19 +225,49 @@ def checkout():
             'total': total
         }
 
-        save_order(order)
+        # Save order safely
+        try:
+            # Load existing orders safely (handle empty or malformed file)
+            if not os.path.exists(ORDERS_FILE) or os.path.getsize(ORDERS_FILE) == 0:
+                orders = []
+            else:
+                with open(ORDERS_FILE, 'r') as f:
+                    content = f.read().strip()
+                    if not content:
+                        orders = []
+                    else:
+                        orders = json.loads(content)
+        except (json.JSONDecodeError, IOError) as e:
+            flash("Error processing existing orders file.", "error")
+            print(f"Error loading orders.json: {e}")
+            return redirect(url_for('checkout'))
 
+        # Append new order and save
+        orders.append(order)
+        try:
+            with open(ORDERS_FILE, 'w') as f:
+                json.dump(orders, f, indent=4)
+        except IOError as e:
+            flash("Failed to save your order. Please try again.", "error")
+            print(f"Error saving order: {e}")
+            return redirect(url_for('checkout'))
+
+        # Send confirmation email
         try:
             send_confirmation_email(email, name, order)
         except Exception as e:
-            print("Email sending failed:", e)
+            print(f"Email sending failed: {e}")
             flash("Order placed, but confirmation email could not be sent.", "warning")
 
+        # Clear cart after successful order
         save_cart({})
 
+        # Render thank you page
         return render_template('thankyou.html')
 
+    # GET request renders checkout form
     return render_template('checkout.html')
+
 
 @app.route('/dashboard')
 @login_required

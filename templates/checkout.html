@@ -1,48 +1,195 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Checkout ‒ Naturalis Pink Salt Co.</title>
-  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Checkout - Naturalis Pink Salt Co.</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display&family=Raleway&display=swap" rel="stylesheet" />
+  <style>
+    /* Override or add form-specific styles consistent with luxury golden-white finish */
+    body {
+      background-color: #fff8f5;
+      color: #6b4c4c; /* soft rose brown */
+      font-family: 'Raleway', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    main.checkout-container {
+      max-width: 600px;
+      background: #fffdf9;
+      margin: 40px auto;
+      padding: 30px 40px;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(215, 198, 173, 0.4);
+    }
+
+    h2 {
+      text-align: center;
+      font-weight: 700;
+      color: #8c7e5a;
+      margin-bottom: 30px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    form label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+      color: #a7986e;
+      font-size: 1.1rem;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea,
+    select {
+      width: 100%;
+      padding: 12px 15px;
+      margin-bottom: 20px;
+      border: 2px solid #d6cfa4;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      color: #5a5138;
+      background-color: #fffdf9;
+      transition: border-color 0.3s ease;
+      box-sizing: border-box;
+      resize: vertical;
+      box-shadow: inset 0 1px 4px rgba(218, 210, 180, 0.4);
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus,
+    textarea:focus,
+    select:focus {
+      border-color: #c1b776;
+      outline: none;
+      background-color: #fefcf6;
+      box-shadow: 0 0 8px #c1b776aa;
+    }
+
+    textarea {
+      min-height: 100px;
+    }
+
+    .btn {
+      background: linear-gradient(45deg, #d6cfa4, #a7986e);
+      border: none;
+      color: white;
+      padding: 14px 28px;
+      font-size: 1.2rem;
+      font-weight: 700;
+      border-radius: 50px;
+      cursor: pointer;
+      display: block;
+      margin: 0 auto;
+      transition: background 0.3s ease;
+      box-shadow: 0 4px 8px rgba(167, 155, 96, 0.7);
+      letter-spacing: 1px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .btn:hover {
+      background: linear-gradient(45deg, #a7986e, #d6cfa4);
+      box-shadow: 0 6px 12px rgba(167, 155, 96, 0.9);
+    }
+
+    /* Flash messages */
+    .flash {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 15px 20px;
+      border-radius: 8px;
+      font-weight: 600;
+      text-align: center;
+      color: white;
+      font-family: 'Raleway', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .flash.error {
+      background-color: #d94f4f;
+      box-shadow: 0 2px 6px #b03333;
+    }
+    .flash.success {
+      background-color: #6bbf6b;
+      box-shadow: 0 2px 6px #3e8e3e;
+    }
+    .flash.warning {
+      background-color: #d9a54f;
+      box-shadow: 0 2px 6px #b3812c;
+      color: #3a2a00;
+    }
+  </style>
 </head>
 <body>
   <header class="luxury-header">
-    <div class="logo"><h1>Naturalis <span>Pink Salt Co.</span></h1></div>
-    <a href="{{ url_for('view_cart') }}" class="cart-btn">Back to Cart</a>
+    <div class="logo">
+      <h1>Naturalis <span>Pink Salt Co.</span></h1>
+    </div>
+    <a href="{{ url_for('view_cart') }}" class="cart-btn">View Cart</a>
   </header>
 
-  <main class="checkout-container">
-    <h2>Checkout</h2>
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}
+      <div>
         {% for category, message in messages %}
-          <div class="flash-message">{{ message }}</div>
+          <div class="flash {{ category }}">{{ message }}</div>
         {% endfor %}
-      {% endif %}
-    {% endwith %}
+      </div>
+    {% endif %}
+  {% endwith %}
 
-    <form class="checkout-form" method="POST" action="{{ url_for('checkout') }}">
-      <label for="full-name">Full Name</label>
-      <input type="text" id="full-name" name="full_name" placeholder="Your full name" required />
+  <main class="checkout-container">
+    <h2>Complete Your Order</h2>
+    <form method="POST" action="{{ url_for('checkout') }}">
+      <label for="full-name">Full Name *</label>
+      <input
+        type="text"
+        id="full-name"
+        name="full-name"
+        placeholder="Your full name"
+        required
+      />
 
-      <label for="email">Email Address</label>
-      <input type="email" id="email" name="email" placeholder="you@example.com" required />
+      <label for="email">Email Address *</label>
+      <input
+        type="email"
+        id="email"
+        name="email"
+        placeholder="you@example.com"
+        required
+      />
 
-      <label for="address">Shipping Address</label>
-      <textarea id="address" name="address" placeholder="Your complete shipping address" required></textarea>
+      <label for="address">Shipping Address *</label>
+      <textarea
+        id="address"
+        name="address"
+        placeholder="Street, City, State, ZIP"
+        required
+      ></textarea>
 
-      <label for="payment-method">Payment Method</label>
-      <select id="payment-method" name="payment_method" required>
+      <label for="payment-method">Payment Method *</label>
+      <select id="payment-method" name="payment-method" required>
         <option value="" disabled selected>Select a payment method</option>
-        <option value="cod">Cash on Delivery</option>
-        <option value="credit_card">Credit Card</option>
-        <option value="paypal">PayPal</option>
+        <option value="Credit Card">Credit Card</option>
+        <option value="Debit Card">Debit Card</option>
+        <option value="PayPal">PayPal</option>
+        <option value="Bank Transfer">Bank Transfer</option>
       </select>
 
-      <button type="submit" class="btn proceed-btn">Place Order</button>
+      <button type="submit" class="btn">Place Order</button>
     </form>
   </main>
+
+  <footer class="footer">
+    <div class="footer-wrapper">
+      <h2 class="footer-heading">We’d love your feedback</h2>
+      <p class="footer-text">
+        <a href="mailto:feedback@naturalis.com" class="footer-email">feedback@naturalis.com</a>
+      </p>
+      <a href="tel:0000000000" class="call-us-btn">Call Us</a>
+    </div>
+  </footer>
 </body>
 </html>
